@@ -35,5 +35,18 @@ if [ "${CIRCLE_BRANCH}" != "master" ]; then
    | saddler report \
       --require saddler/reporter/github \
       --reporter Saddler::Reporter::Github::PullRequestReviewComment
+
+  noof=$(git diff -z --name-only origin/master \
+   | xargs -0 rubocop-select \
+   | xargs rubocop \
+   | grep "no offenses detected")
+  echo $noof
+  echo "Rubocop result: ${#noof}"
+
+  if [[ -z $noof ]]; then
+    echo "offenses detected"
+    exit 1
+  fi
+
 fi
 exit 0
