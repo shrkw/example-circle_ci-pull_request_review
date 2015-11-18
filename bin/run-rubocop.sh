@@ -41,7 +41,7 @@ if [ "${CIRCLE_BRANCH}" != "master" ]; then
    | xargs rubocop \
    | grep "no offenses detected")
   echo $noof
-  echo "Rubocop result: {$#noof}"
+  echo "Rubocop result: ${#noof}"
 
   if [[ -z $noof ]]; then
     echo "offenses detected"
