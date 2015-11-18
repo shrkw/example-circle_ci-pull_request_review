@@ -1,6 +1,6 @@
-def bad_name
+def badName
   domething = true
   if domething
     test
-  end
+    end
 end
